@@ -17,12 +17,16 @@ def get_guest_data():
 
 def get_party_data(guest_list):
     # iterate over each guest
+        party_list = []
         for guest in guest_list:
             for key, val in guest.items():
                 if key == 'Party':
-                    print("{} : {}".format(key, val))
+                     party_list.append(val)
+                    # print(val)
+        return party_list
 
 
 
 guest_list = get_guest_data()
-get_party_data(guest_list)
+party_list = get_party_data(guest_list)
+print(party_list)
