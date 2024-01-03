@@ -1,11 +1,28 @@
 import pandas as pd
 
+def get_guest_data():
+    # empty list of guest data 
+    guest_list = []
+    # read csv file containing guest contact information
+    guest_df = pd.read_csv('C:/Users/julia/OneDrive/Desktop/My Guest List.csv')
 
-# read csv file containing guest contact information
-guest_df = pd.read_csv('C:/Users/julia/OneDrive/Desktop/My Guest List.csv')
-# print(guest_df)
+    # iterate over each guest
+    for ind in guest_df.index:
+        # use dict to store individual guest information
+        guest_data = dict({'Party': guest_df['Party'][ind], 'Full Name': f"{guest_df['First Name'][ind]} {guest_df['Last Name'][ind]}", 'Attendance Status': guest_df['Wedding Ceremony & Reception - RSVP'][ind]})
+        # store all guest information in list
+        guest_list.append(guest_data)
+    return (guest_list)
 
-# create df with guest full name, party, and attendance status
-attendance_df = guest_df[['First Name','Last Name', 'Party', 'Wedding Ceremony & Reception - RSVP']].copy()
-print(attendance_df)
 
+def get_party_data(guest_list):
+    # iterate over each guest
+        for guest in guest_list:
+            for key, val in guest.items():
+                if key == 'Party':
+                    print("{} : {}".format(key, val))
+
+
+
+guest_list = get_guest_data()
+get_party_data(guest_list)
