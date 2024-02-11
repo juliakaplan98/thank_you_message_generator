@@ -30,8 +30,8 @@
 
 
 class Party:
-    def __init__(self, party_id, address, email, phone, gift):
-        self.party_id = party_id
+    def __init__(self, address, email, phone, gift):
+        # self.party_id = party_id
         self.guest_names = []
         self.address = address
         self.email = email
@@ -46,11 +46,11 @@ class Party:
         return self.guest_names
 
 # Create party    
-party_1 = Party("X Family", "xx-xx Madison Ave, Apt xx, Manhattan, NY, xxxxx", "xxx123@gmail.com", "(xxx) xxx-xxxx", "Michael Aram Photo Frame")
+party_1 = Party("xx-xx Madison Ave, Apt xx, Manhattan, NY, xxxxx", "xxx123@gmail.com", "(xxx) xxx-xxxx", "Michael Aram Photo Frame")
 # Add member to party
 guest_1 = party_1.add_guest("John X")
 guest_2 = party_1.add_guest("Ann X")
 
 # Access all members in the party
 guest_names = party_1.get_guest()
-print(f'Party: {party_1.party_id}\nGuest in Party: {party_1.guest_names}\n\nContact Information\n-------------------\nAddress: {party_1.address}\nEmail: {party_1.email}\nPhone: {party_1.phone}\n\nGift Received: {party_1.gift}')
+print(f'\nGuest in Party: {party_1.guest_names}\n\nContact Information\n-------------------\nAddress: {party_1.address}\nEmail: {party_1.email}\nPhone: {party_1.phone}\n\nGift Received: {party_1.gift}')
