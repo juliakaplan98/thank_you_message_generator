@@ -30,4 +30,4 @@ def get_party_data(guest_list):
 guest_list = get_guest_data()
 party_list = get_party_data(guest_list)
 
-print(len(party_list))
+print(party_list)
