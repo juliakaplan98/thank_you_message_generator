@@ -30,7 +30,6 @@ group_size = int(input("Number of guests in this group? "))
 group_address = input("Party's Address: ")
 group_email = input("Party's Email: ")
 group_phone = input("Party's Phone Number: ")
-# group_attendance = input("Party's Attendance Status (Y/N): ")
 group_gift = input("Gift Received: ")
 
 # Create group    
