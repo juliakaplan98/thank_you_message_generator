@@ -1,4 +1,4 @@
-from guest_data.party import Party
+from party import Party
 
 
 
