@@ -4,7 +4,7 @@ import uuid
 import os
 import csv
 
-class Group:
+class GroupData:
     def __init__(self, id, address, email, phone, gift):
         self.guest_names = []
         self.id = id
@@ -27,7 +27,6 @@ group_id = uuid.uuid4()
 
 # Get number of guest per group
 group_size = int(input("Number of guests in this group? ")) 
-
 # Get information about group
 group_address = input("\nParty's Address: ")
 group_email = input("Party's Email: ")
@@ -35,7 +34,7 @@ group_phone = input("Party's Phone Number: ")
 group_gift = input("Gift Received: ")
 
 # Create group    
-new_group = Group(group_id, group_address, group_email, group_phone, group_gift)
+new_group = GroupData(group_id, group_address, group_email, group_phone, group_gift)
 
 # Add names of guests to group
 count=0
