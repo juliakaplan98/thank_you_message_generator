@@ -2,7 +2,8 @@ import pandas as pd
 from pathlib import Path
 import uuid
 import os
-import csv
+# import csv
+import json
 from group_data import GroupData
 
 def main_menu():
@@ -68,7 +69,9 @@ def menu():
                 attendance = new_group.get_attendance()
 
                 # data for dataframe
-                data = {'ID': new_group.id,
+
+                # 'ID': new_group.id,
+                data = {
                         'Party Members': new_group.guest_names,
                         'Address': new_group.address,
                         'Email': new_group.email,
@@ -77,16 +80,23 @@ def menu():
                         'Gift': new_group.gift}
 
                 df = pd.DataFrame(data, columns=['ID', 'Party Members', 'Address', 'Email', 'Phone Number', 'Attendance Status', 'Gift'])
-                path = Path('GuestList.csv')
+                # path = Path('GuestList.csv')
 
-                if path.is_file() == False:
-                    with open('GuestList.csv', 'w') as csvFile:
-                        df.to_csv('GuestList.csv', index=False,header=True)
-                        csvFile.close()
-                        print("CSV file created successfully.")
-                else:
-                    df.to_csv('GuestList.csv', mode='a', index=False, header=False)
-                    print("Data appended successfully.")
+                # if path.is_file() == False:
+                #     with open('GuestList.csv', 'w') as csvFile:
+                #         df.to_csv('GuestList.csv', index=False,header=True)
+                #         csvFile.close()
+                #         print("CSV file created successfully.")
+                # else:
+                #     df.to_csv('GuestList.csv', mode='a', index=False, header=False)
+                #     print("Data appended successfully.")
+
+                # create prepare data for json file
+                with open('data.json', 'w') as f:
+                    json.dump(data, f)
+
+
+
                 ##########################################################        
             elif choice == '2':
                 print("\nMenu Option in Progress.")
