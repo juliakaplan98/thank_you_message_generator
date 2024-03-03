@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Any
 
 
 class GiftType(Enum):
@@ -36,3 +37,15 @@ class Gift:
     @amount.setter
     def amount(self, amount: int) -> None:
         self._amount = amount
+
+    def jsonEncode(self) -> dict[str, Any]:
+        return {
+            "description": self.description,
+            "type": self.type.name,
+            "amount": self.amount
+        }
+
+    def jsonDecode(self, gift: dict[str, Any]) -> None:
+        self.description = dict.get('description')
+        self.type = dict.get('type')
+        self.amount = dict.get('amount')

@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Any
 
 
 class AddressType(Enum):
@@ -54,3 +55,19 @@ class Address:
     @zip.setter
     def zip(self, zip: int) -> None:
         self._zip = zip
+
+    def jsonEncode(self) -> dict[str, Any]:
+        return {
+            "address0": self.address0,
+            "address1": self.address1,
+            "city": self.city,
+            "state": self.state,
+            "zip": self.zip
+        }
+
+    def jsonDecode(self, address: dict[str, Any]) -> None:
+        self._address0 = address.get('address0')
+        self._address1 = address.get('address1')
+        self._city = address.get('city')
+        self._state = address.get('state')
+        self._zip = address.get('zip')

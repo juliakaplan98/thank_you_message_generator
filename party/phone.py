@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Any
 
 
 class PhoneType(Enum):
@@ -32,3 +33,13 @@ class Phone:
 
     def validatePhone(self, phone) -> bool:
         return True
+
+    def jsonEncode(self) -> dict[str, Any]:
+        return {
+            "phone": self.phone,
+            "type": self.type.name
+        }
+
+    def jsonDecode(self, phone: dict[str, Any]) -> None:
+        self.phone = phone.get('phone')
+        self.type = phone.get('type')

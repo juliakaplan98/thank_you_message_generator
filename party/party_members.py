@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Any
 
 
 class AttendanceStatus(Enum):
@@ -26,3 +27,13 @@ class PartyMember:
     @attendance.setter
     def attendance(self, attendance: AttendanceStatus) -> None:
         self._attendance = attendance
+
+    def jsonEncode(self) -> dict[str, Any]:
+        return {
+            "name": self.name,
+            "attendance": self.attendance.name
+        }
+
+    def jsonDecode(self, member: dict[str, Any]) -> None:
+        self.name = member.get('name')
+        self.attendance = member.get('attendance')
