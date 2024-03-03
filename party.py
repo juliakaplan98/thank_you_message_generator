@@ -1,6 +1,7 @@
 from types import List
 from party_members import PartyMember, AttendanceStatus
 
+
 class Party:
     def __init__(self) -> None:
         self._name: str
@@ -15,7 +16,29 @@ class Party:
         self._name = name
 
     @property
-    def
+    def members(self) -> List[PartyMember]:
+        return self._members
+
+    @members.setter
+    def members(self, members: List[PartyMember]) -> None:
+        self._members = members
+
+    def getMembersList(self) -> List[str]:
+        members = [m.name for m in self._members]
+        members.sort()
+        return members
+
+    def getAttendeesList(self) -> List[str]:
+        members = [m.name for m in self._members if m.attendance ==
+                   AttendanceStatus.Yes]
+        members.sort()
+        return members
+
+    def getNoAttendeesList(self) -> List[str]:
+        members = [m.name for m in self._members if m.attendance ==
+                   AttendanceStatus.No]
+        members.sort()
+        return members
 
 
 class Contact:
