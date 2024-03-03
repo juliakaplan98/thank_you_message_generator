@@ -4,6 +4,7 @@ import uuid
 import os
 import csv
 
+
 class GroupData:
     def __init__(self, id, address, email, phone, gift):
         self.guest_names = []
@@ -12,13 +13,17 @@ class GroupData:
         self.email = email
         self.phone = phone
         self.attendance = []
-        self.gift = gift 
+        self.gift = gift
+
     def add_guest(self, guest):
-        self.guest_names.append(guest) 
+        self.guest_names.append(guest)
+
     def get_guest(self):
         return self.guest_names
+
     def add_attendance(self, attendance):
-        self.attendance.append(attendance) 
+        self.attendance.append(attendance)
+
     def get_attendance(self):
         return self.attendance
 
@@ -26,15 +31,16 @@ class GroupData:
 # group_id = uuid.uuid4()
 
 # # Get number of guest per group
-# group_size = int(input("Number of guests in this group? ")) 
+# group_size = int(input("Number of guests in this group? "))
 # # Get information about group
 # group_address = input("\nParty's Address: ")
 # group_email = input("Party's Email: ")
 # group_phone = input("Party's Phone Number: ")
 # group_gift = input("Gift Received: ")
 
-# # Create group    
-# new_group = GroupData(group_id, group_address, group_email, group_phone, group_gift)
+# # Create group
+# new_group = GroupData(group_id, group_address, group_email,
+#    group_phone, group_gift)
 
 # # Add names of guests to group
 # count=0
@@ -59,7 +65,8 @@ class GroupData:
 #         'Attendance Status': new_group.attendance,
 #         'Gift': new_group.gift}
 
-# df = pd.DataFrame(data, columns=['ID', 'Party Members', 'Address', 'Email', 'Phone Number', 'Attendance Status', 'Gift'])
+# df = pd.DataFrame(data, columns=['ID', 'Party Members', 'Address', 'Email',
+#    'Phone Number', 'Attendance Status', 'Gift'])
 # path = Path('GuestList.csv')
 
 # if path.is_file() == False:
@@ -71,4 +78,3 @@ class GroupData:
 # else:
 #     df.to_csv('GuestList.csv', mode='a', index=False, header=False)
 #     print("Data appended successfully.")
-
