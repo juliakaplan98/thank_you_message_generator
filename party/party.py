@@ -1,6 +1,7 @@
-from types import List
+import json
+from types import List, Any
 from party_members import PartyMember, AttendanceStatus
-from email import Email
+from pemail import Email
 from phone import Phone
 from gift import Gift
 from address import Address
@@ -15,7 +16,19 @@ class Party:
         self._gift: Gift
         self._address: Address
 
+    def jsonEncode(self) -> dict[str, Any]:
+        return {
+            "name": self.name,
+            "attendance": self.attendance.name
+        }
+
+    def jsonDecode(self, string: str) -> None:
+        jsonStr = json.loads(string)
+        self.name = jsonStr.get('name')
+        self.attendance = jsonStr.get('attendance')
+
     # Properties
+
     @property
     def name(self) -> str:
         return self._name

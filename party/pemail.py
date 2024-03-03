@@ -36,13 +36,11 @@ class Email:
 
     def jsonEncode(self) -> dict[str, Any]:
         return {
-            "email": self._email,
-            "type": self._type.value
+            "email": self.email,
+            "type": self.type.name
         }
 
     def jsonDecode(self, string: str) -> None:
-        try:
-            jsonStr = json.loads(string)
-            self._email = jsonStr.email
-        except:
-            print('Error')
+        jsonStr = json.loads(string)
+        self.email = jsonStr.get('email')
+        self.type = jsonStr.get('type')
