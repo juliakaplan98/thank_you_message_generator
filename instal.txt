@@ -1,1 +1,6 @@
 pip install -r requirements.txt
+
+git checkout -b json-dump
+git add .
+git commit
+git push

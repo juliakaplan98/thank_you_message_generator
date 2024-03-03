@@ -3,14 +3,18 @@ from enum import Enum
 
 
 class EmailType(Enum):
-    Home = 0
-    Office = 1
+    NA = 0
+    Home = 1
+    Office = 2
 
 
 class Email:
-    def __init__(self) -> None:
-        self._type: EmailType
-        self._email: str
+    def __init__(
+            self,
+            email: str = '',
+            type: EmailType = EmailType.NA) -> None:
+        self._type: EmailType = type
+        self._email: str = email
 
     # Properties
     @property
@@ -35,8 +39,8 @@ class Email:
 
     def jsonEncode(self) -> dict[str, Any]:
         return {
-            "email": self.email,
-            "type": self.type.name
+            'email': self.email,
+            'type': self.type.name
         }
 
     def jsonDecode(self, pemail: dict[str, Any]) -> None:

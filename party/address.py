@@ -3,25 +3,42 @@ from typing import Any
 
 
 class AddressType(Enum):
-    Home = 0
-    Office = 1
+    NA = 0
+    Home = 1
+    Office = 2
 
 
 class Address:
-    def __init__(self) -> None:
-        self._address0: str
-        self._address1: str
-        self._city: str
-        self._state: str
-        self._zip: int
+    def __init__(
+            self,
+            address0: str = '',
+            address1: str = '',
+            city: str = '',
+            state: str = '',
+            zip: int = 0,
+            type: AddressType = AddressType.NA) -> None:
+        self._address0: str = address0
+        self._address1: str = address1
+        self._city: str = city
+        self._state: str = state
+        self._zip: int = zip
+        self._type = type
 
     # Properties
+    @property
+    def type(self) -> AddressType:
+        return self._type
+
+    @type.setter
+    def type(self, type: AddressType) -> None:
+        self._type = type
+
     @property
     def address0(self) -> str:
         return self._address0
 
     @address0.setter
-    def address0(self, address) -> None:
+    def address0(self, address: str) -> None:
         self._address0 = address
 
     @property
@@ -58,16 +75,18 @@ class Address:
 
     def jsonEncode(self) -> dict[str, Any]:
         return {
-            "address0": self.address0,
-            "address1": self.address1,
-            "city": self.city,
-            "state": self.state,
-            "zip": self.zip
+            'address0': self.address0,
+            'address1': self.address1,
+            'city': self.city,
+            'state': self.state,
+            'zip': self.zip,
+            'type': self.type.name
         }
 
     def jsonDecode(self, address: dict[str, Any]) -> None:
-        self._address0 = address.get('address0')
-        self._address1 = address.get('address1')
-        self._city = address.get('city')
-        self._state = address.get('state')
-        self._zip = address.get('zip')
+        self.address0 = address.get('address0')
+        self.address1 = address.get('address1')
+        self.city = address.get('city')
+        self.state = address.get('state')
+        self.zip = address.get('zip')
+        self.type = address.get('type')

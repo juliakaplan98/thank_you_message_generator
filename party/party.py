@@ -1,43 +1,20 @@
 import json
-from types import Any
-from party_members import PartyMember, AttendanceStatus
-from pemail import Email
-from phone import Phone
-from gift import Gift
-from address import Address
+from typing import Any
+from .phone import Phone
+from .gift import Gift
+from .address import Address
+from .pemail import Email
+from .party_members import PartyMember, AttendanceStatus
 
 
 class Party:
-    def __init__(self) -> None:
-        self._name: str
-        self._members: list[PartyMember]
+    def __init__(self, name: str = '') -> None:
+        self._name: str = name
+        self._members: list[PartyMember] = []
         self._email: Email
         self._phone: Phone
         self._gift: Gift
         self._address: Address
-
-    def jsonEncode(self) -> dict[str, Any]:
-        return {
-            "name": self.name,
-            "members": [member.jsonEncode() for member in self.members],
-            "email": self.email.jsonEncode(),
-            "phone": self.phone.jsonEncode(),
-            "gift": self.gift.jsonEncode(),
-            "address": self.jsonEncode(),
-        }
-
-    def jsonDecode(self, string: str) -> None:
-        jsonStr = json.loads(string)
-        self.name = jsonStr.get('name')
-        self.email = self.email.jsonDecode(jsonStr.get('email'))
-        self.phone = self.phone.jsonDecode(jsonStr.get('phone'))
-        self.gift = self.gift.gift.jsonDecode(jsonStr.get('gift'))
-        self.address = self.address.jsonDecode(jsonStr.get('address'))
-
-        self.members = []
-        for m in jsonStr.get('members'):
-            member = PartyMember()
-            self.members.append(member.jsonDecode(m))
 
     # Properties
     @property
@@ -76,8 +53,8 @@ class Party:
     def gift(self) -> Gift:
         return self._gift
 
-    @email.setter
-    def email(self, gift: Gift) -> None:
+    @gift.setter
+    def gift(self, gift: Gift) -> None:
         self._gift = gift
 
     @property
@@ -105,3 +82,27 @@ class Party:
                    AttendanceStatus.No]
         members.sort()
         return members
+
+    # Methods
+    def jsonEncode(self) -> dict[str, Any]:
+        return {
+            'name': self.name,
+            'members': [member.jsonEncode() for member in self.members],
+            'email': self.email.jsonEncode(),
+            'phone': self.phone.jsonEncode(),
+            'gift': self.gift.jsonEncode(),
+            'address': self.address.jsonEncode(),
+        }
+
+    def jsonDecode(self, string: str) -> None:
+        jsonStr = json.loads(string)
+        self.name = jsonStr.get('name')
+        self.email = self.email.jsonDecode(jsonStr.get('email'))
+        self.phone = self.phone.jsonDecode(jsonStr.get('phone'))
+        self.gift = self.gift.gift.jsonDecode(jsonStr.get('gift'))
+        self.address = self.address.jsonDecode(jsonStr.get('address'))
+
+        self.members = []
+        for m in jsonStr.get('members'):
+            member = PartyMember()
+            self.members.append(member.jsonDecode(m))

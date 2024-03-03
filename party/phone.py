@@ -3,15 +3,19 @@ from typing import Any
 
 
 class PhoneType(Enum):
-    Cell = 0
-    Home = 1
-    Office = 2
+    NA = 0
+    Cell = 1
+    Home = 2
+    Office = 3
 
 
 class Phone:
-    def __init__(self) -> None:
-        self._type: PhoneType
-        self._phone: str
+    def __init__(
+            self,
+            phone: str = '',
+            type: PhoneType = PhoneType.NA) -> None:
+        self._type: PhoneType = type
+        self._phone: str = phone
 
     # Properties
     @property
@@ -36,8 +40,8 @@ class Phone:
 
     def jsonEncode(self) -> dict[str, Any]:
         return {
-            "phone": self.phone,
-            "type": self.type.name
+            'phone': self.phone,
+            'type': self.type.name
         }
 
     def jsonDecode(self, phone: dict[str, Any]) -> None:

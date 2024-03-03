@@ -1,56 +1,31 @@
 import json
-from enum import Enum
-from typing import Any
-
-
-class EmailType(Enum):
-    Home = 0
-    Office = 1
-
-
-class Email:
-    def __init__(self) -> None:
-        self._type: EmailType
-        self._email: str
-
-    # Properties
-    @property
-    def email(self) -> str:
-        return self._email
-
-    @email.setter
-    def email(self, email) -> None:
-        if self.validateEmail(email):
-            self._email = email
-
-    @property
-    def type(self) -> EmailType:
-        return self._type
-
-    @type.setter
-    def type(self, type: EmailType) -> None:
-        self._type = type
-
-    def validateEmail(self, email) -> bool:
-        return True
-
-    def jsonEncode(self) -> dict[str, Any]:
-        return {
-            "email": self._email,
-            "type": self._type.name
-        }
-
-    def jsonDecode(self, string: str) -> None:
-        jsonStr = json.loads(string)
-        self.email = jsonStr.get('email')
-        self.type = jsonStr.get('type')
-
+import os
+from party.party import Party
+from party.phone import Phone, PhoneType
+from party.pemail import Email, EmailType
+from party.address import Address, AddressType
+from party.gift import Gift, GiftType
+from party.party_members import PartyMember, AttendanceStatus
 
 if __name__ == '__main__':
-    email = Email()
+    p = Party('Kaplan')
+    p.phone = Phone('555.222.1212', PhoneType.Cell)
+    p.email = Email('test@.msn.com', EmailType.NA)
+    p.address = Address(
+        type=AddressType.Home,
+        address0='6421 Booth Str',
+        address1='Apt 6D',
+        city='Rego PArk',
+        state='NY',
+        zip=11374)
+    p.gift = Gift(type=GiftType.Cash, amount=500)
+    p.members.extend([
+        PartyMember(name='Natalya Kaplan', attendance=AttendanceStatus.Yes),
+        PartyMember(name='Michael Kaplan', attendance=AttendanceStatus.Yes),
+        PartyMember(name='Minnie Kaplan', attendance=AttendanceStatus.Yes),
+    ])
 
-    let = '{"email": "test@msn.com", "type": "222-555-1212"}'
-    email.jsonDecode(let)
-
-    print(email.email)
-    print(email.type)
+    wd = os.getcwd()
+    path = os.path.join(wd, 'data', 'test.json')
+    with open(path, 'w') as file:
+        json.dump(p.jsonEncode(), file)

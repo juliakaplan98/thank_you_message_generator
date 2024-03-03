@@ -3,15 +3,20 @@ from typing import Any
 
 
 class GiftType(Enum):
-    Cash = 0
-    Present = 1
+    NA = 0
+    Cash = 1
+    Present = 2
 
 
 class Gift:
-    def __init__(self) -> None:
-        self._type: GiftType
-        self._description: str
-        self._amount: int
+    def __init__(
+            self,
+            type: GiftType = GiftType.NA,
+            description: str = '',
+            amount: int = 0) -> None:
+        self._type: GiftType = type
+        self._description: str = description
+        self._amount: int = amount
 
     # Properties
     @property
@@ -32,7 +37,7 @@ class Gift:
 
     @property
     def amount(self) -> int:
-        return self._type
+        return self._amount
 
     @amount.setter
     def amount(self, amount: int) -> None:
