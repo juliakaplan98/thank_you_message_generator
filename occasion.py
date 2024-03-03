@@ -3,17 +3,15 @@ from enum import Enum
 from party.party import Party
 from party.address import Address
 
-
 class OccasionType(Enum):
     NA = 0
     WEDDING = 1
 
-
 class Occasion:
     def __init__(
             self,
-            type: OccasionType = OccasionType.NA,
             name: str = '',
+            type: OccasionType = OccasionType.NA,
             parties: List[Party] = None) -> None:
         self._name: str = name
         self._address: Address
@@ -39,6 +37,7 @@ class Occasion:
     @parties.setter
     def parties(self, parties: List[Party]) -> None:
         self._parties = parties
+
 
     # TODO add getter and setter for occasion type
 
