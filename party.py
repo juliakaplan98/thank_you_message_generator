@@ -1,7 +1,8 @@
 from types import List
 from party_members import PartyMember, AttendanceStatus
-from email import Email, EmailType
-from phone import Phone, PhoneType
+from email import Email
+from phone import Phone
+from gift import Gift
 
 
 class Party:
@@ -10,6 +11,7 @@ class Party:
         self._members: List[PartyMember]
         self._email: Email
         self._phone: Phone
+        self._gift: Gift
 
     # Properties
     @property
@@ -33,7 +35,7 @@ class Party:
         return self._phone
 
     @phone.setter
-    def phone(self, phone) -> None:
+    def phone(self, phone: Phone) -> None:
         self._phone = phone
 
     @property
@@ -41,8 +43,16 @@ class Party:
         return self._email
 
     @email.setter
-    def email(self, email) -> None:
+    def email(self, email: Email) -> None:
         self._email = email
+
+    @property
+    def gift(self) -> Gift:
+        return self._gift
+
+    @email.setter
+    def email(self, gift: Gift) -> None:
+        self._gift = gift
 
     # members
     def getMembersList(self) -> List[str]:
