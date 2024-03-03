@@ -3,14 +3,18 @@ from typing import Any
 
 
 class AttendanceStatus(Enum):
-    Yes = 0
-    No = 1
+    NA = 0
+    Yes = 1
+    No = 2
 
 
 class PartyMember:
-    def __init__(self) -> None:
-        self._name: str
-        self._attendance: AttendanceStatus
+    def __init__(
+            self,
+            name: str = '',
+            attendance: AttendanceStatus = AttendanceStatus.NA) -> None:
+        self._name: str = name
+        self._attendance: AttendanceStatus = attendance
 
     @property
     def name(self) -> str:
