@@ -1,4 +1,3 @@
-import json
 from enum import Enum
 from typing import Any
 
@@ -66,10 +65,9 @@ class Address:
             "zip": self.zip
         }
 
-    def jsonDecode(self, string: str) -> None:
-        jsonStr = json.loads(string)
-        self._address0 = jsonStr.get('address0')
-        self._address1 = jsonStr.get('address1')
-        self._city = jsonStr.get('city')
-        self._state = jsonStr.get('state')
-        self._zip = jsonStr.get('zip')
+    def jsonDecode(self, address: dict[str, Any]) -> None:
+        self._address0 = address.get('address0')
+        self._address1 = address.get('address1')
+        self._city = address.get('city')
+        self._state = address.get('state')
+        self._zip = address.get('zip')

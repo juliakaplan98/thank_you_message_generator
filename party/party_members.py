@@ -1,4 +1,3 @@
-import json
 from enum import Enum
 from typing import Any
 
@@ -35,7 +34,6 @@ class PartyMember:
             "attendance": self.attendance.name
         }
 
-    def jsonDecode(self, string: str) -> None:
-        jsonStr = json.loads(string)
-        self.name = jsonStr.get('name')
-        self.attendance = jsonStr.get('attendance')
+    def jsonDecode(self, member: dict[str, Any]) -> None:
+        self.name = member.get('name')
+        self.attendance = member.get('attendance')

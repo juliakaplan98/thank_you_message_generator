@@ -1,4 +1,3 @@
-import json
 from enum import Enum
 from typing import Any
 
@@ -41,7 +40,6 @@ class Phone:
             "type": self.type.name
         }
 
-    def jsonDecode(self, string: str) -> None:
-        jsonStr = json.loads(string)
-        self.phone = jsonStr.get('phone')
-        self.type = jsonStr.get('type')
+    def jsonDecode(self, phone: dict[str, Any]) -> None:
+        self.phone = phone.get('phone')
+        self.type = phone.get('type')

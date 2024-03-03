@@ -1,4 +1,3 @@
-import json
 from typing import Any
 from enum import Enum
 
@@ -40,7 +39,6 @@ class Email:
             "type": self.type.name
         }
 
-    def jsonDecode(self, string: str) -> None:
-        jsonStr = json.loads(string)
-        self.email = jsonStr.get('email')
-        self.type = jsonStr.get('type')
+    def jsonDecode(self, pemail: dict[str, Any]) -> None:
+        self.email = pemail.get('email')
+        self.type = pemail.get('type')

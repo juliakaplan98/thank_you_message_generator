@@ -1,4 +1,3 @@
-import json
 from enum import Enum
 from typing import Any
 
@@ -46,8 +45,7 @@ class Gift:
             "amount": self.amount
         }
 
-    def jsonDecode(self, string: str) -> None:
-        jsonStr = json.loads(string)
-        self.description = jsonStr.get('description')
-        self.type = jsonStr.get('type')
-        self.amount = jsonStr.get('amount')
+    def jsonDecode(self, gift: dict[str, Any]) -> None:
+        self.description = dict.get('description')
+        self.type = dict.get('type')
+        self.amount = dict.get('amount')
