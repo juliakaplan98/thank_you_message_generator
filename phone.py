@@ -12,13 +12,15 @@ class Phone:
         self._type: PhoneType
         self._phone: str
 
+    # Properties
     @property
     def phone(self) -> str:
         return self._phone
 
     @phone.setter
     def phone(self, phone) -> None:
-        self._phone = phone
+        if self.validatePhone(phone):
+            self._phone = phone
 
     @property
     def type(self) -> PhoneType:
@@ -27,3 +29,6 @@ class Phone:
     @type.setter
     def type(self, type: PhoneType) -> None:
         self._type = type
+
+    def validatePhone(self, phone) -> bool:
+        return True
