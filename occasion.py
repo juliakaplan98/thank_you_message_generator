@@ -3,7 +3,7 @@ from party.party import Party
 from party.address import Address
 
 
-class Event:
+class Occasion:
     def __init__(
             self,
             name: str = '',
