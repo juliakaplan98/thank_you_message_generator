@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-def PhoneType(Enum):
+class PhoneType(Enum):
     Cell = 0
     Home = 1
     Office = 2
