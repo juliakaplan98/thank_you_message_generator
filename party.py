@@ -3,6 +3,7 @@ from party_members import PartyMember, AttendanceStatus
 from email import Email
 from phone import Phone
 from gift import Gift
+from address import Address
 
 
 class Party:
@@ -12,6 +13,7 @@ class Party:
         self._email: Email
         self._phone: Phone
         self._gift: Gift
+        self._address: Address
 
     # Properties
     @property
@@ -53,6 +55,14 @@ class Party:
     @email.setter
     def email(self, gift: Gift) -> None:
         self._gift = gift
+
+    @property
+    def address(self) -> Address:
+        return self._address
+
+    @address.setter
+    def address(self, address: Address) -> None:
+        self._address = address
 
     # members
     def getMembersList(self) -> List[str]:
