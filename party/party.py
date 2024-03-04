@@ -1,5 +1,5 @@
 import json
-from typing import Any
+from typing import Any, List
 from .phone import Phone
 from .gift import Gift
 from .address import Address
@@ -8,13 +8,23 @@ from .party_members import PartyMember, AttendanceStatus
 
 
 class Party:
-    def __init__(self, name: str = '') -> None:
+    def __init__(
+            self,
+            name: str = '',
+            email: Email = Email(),
+            phone: Phone = Phone(),
+            gift: Gift = Gift(),
+            address: Address = Address(),
+            members: List[PartyMember] = None
+    ) -> None:
         self._name: str = name
-        self._members: list[PartyMember] = []
-        self._email: Email
-        self._phone: Phone
-        self._gift: Gift
-        self._address: Address
+        if members is None:
+            members = []
+        self._members: list[PartyMember] = members
+        self._email: Email = email
+        self._phone: Phone = phone
+        self._gift: Gift = gift
+        self._address: Address = address
 
     # Properties
     @property
@@ -94,15 +104,15 @@ class Party:
             'address': self.address.jsonEncode(),
         }
 
-    def jsonDecode(self, string: str) -> None:
-        jsonStr = json.loads(string)
-        self.name = jsonStr.get('name')
-        self.email = self.email.jsonDecode(jsonStr.get('email'))
-        self.phone = self.phone.jsonDecode(jsonStr.get('phone'))
-        self.gift = self.gift.gift.jsonDecode(jsonStr.get('gift'))
-        self.address = self.address.jsonDecode(jsonStr.get('address'))
-
-        self.members = []
-        for m in jsonStr.get('members'):
-            member = PartyMember()
-            self.members.append(member.jsonDecode(m))
+    @staticmethod
+    def jsonDecode(party: dict[str, any]):
+        return Party(
+            name=party.get('name'),
+            email=Email.jsonDecode(party.get('email')),
+            phone=Phone.jsonDecode(party.get('phone')),
+            gift=Gift.jsonDecode(party.get('gift')),
+            address=Address.jsonDecode(party.get('address')),
+            members=[PartyMember(
+                name=member.get('name'), attendance=member.get('attendance'))
+                for member in party.get('members')]
+        )

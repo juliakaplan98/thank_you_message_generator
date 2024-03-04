@@ -43,6 +43,8 @@ class Email:
             'type': self.type.name
         }
 
-    def jsonDecode(self, pemail: dict[str, Any]) -> None:
-        self.email = pemail.get('email')
-        self.type = pemail.get('type')
+    @staticmethod
+    def jsonDecode(pemail: dict[str, Any]):
+        return Email(
+            email=pemail.get('email'),
+            type=pemail.get('type'))

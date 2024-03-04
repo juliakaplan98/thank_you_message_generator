@@ -29,3 +29,8 @@ if __name__ == '__main__':
     path = os.path.join(wd, 'data', 'test.json')
     with open(path, 'w') as file:
         json.dump(p.jsonEncode(), file)
+
+    with open(path, 'r') as file:
+        pp = json.load(file)
+        ppp = Party.jsonDecode(pp)
+        print(ppp)

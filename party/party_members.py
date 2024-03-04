@@ -38,6 +38,8 @@ class PartyMember:
             "attendance": self.attendance.name
         }
 
-    def jsonDecode(self, member: dict[str, Any]) -> None:
-        self.name = member.get('name')
-        self.attendance = member.get('attendance')
+    @staticmethod
+    def jsonDecode(member: dict[str, Any]):
+        return PartyMember(
+            name=member.get('name'),
+            attendance=member.get('attendance'))

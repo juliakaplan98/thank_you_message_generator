@@ -50,7 +50,9 @@ class Gift:
             "amount": self.amount
         }
 
-    def jsonDecode(self, gift: dict[str, Any]) -> None:
-        self.description = dict.get('description')
-        self.type = dict.get('type')
-        self.amount = dict.get('amount')
+    @staticmethod
+    def jsonDecode(gift: dict[str, Any]):
+        return Gift(
+            description=gift.get('description'),
+            type=gift.get('type'),
+            amount=gift.get('amount'))

@@ -83,10 +83,12 @@ class Address:
             'type': self.type.name
         }
 
-    def jsonDecode(self, address: dict[str, Any]) -> None:
-        self.address0 = address.get('address0')
-        self.address1 = address.get('address1')
-        self.city = address.get('city')
-        self.state = address.get('state')
-        self.zip = address.get('zip')
-        self.type = address.get('type')
+    @staticmethod
+    def jsonDecode(address: dict[str, Any]):
+        return Address(
+            address0=address.get('address0'),
+            address1=address.get('address1'),
+            city=address.get('city'),
+            state=address.get('state'),
+            zip=address.get('zip'),
+            type=address.get('type'),)

@@ -36,6 +36,7 @@ class Phone:
         self._type = type
 
     def validatePhone(self, phone) -> bool:
+        # TODO validate phone number for usa
         return True
 
     def jsonEncode(self) -> dict[str, Any]:
@@ -44,6 +45,8 @@ class Phone:
             'type': self.type.name
         }
 
-    def jsonDecode(self, phone: dict[str, Any]) -> None:
-        self.phone = phone.get('phone')
-        self.type = phone.get('type')
+    @staticmethod
+    def jsonDecode(phone: dict[str, Any]):
+        return Phone(
+            phone=phone.get('phone'),
+            type=phone.get('type'))
