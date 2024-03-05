@@ -49,4 +49,4 @@ class Phone:
     def jsonDecode(phone: dict[str, Any]):
         return Phone(
             phone=phone.get('phone'),
-            type=phone.get('type'))
+            type=phone.get('type')),

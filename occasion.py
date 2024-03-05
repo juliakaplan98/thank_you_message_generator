@@ -14,9 +14,10 @@ class Occasion:
             self,
             name: str = '',
             type: OccasionType = OccasionType.NA,
+            address: Address = Address(),
             parties: List[Party] = None) -> None:
         self._name: str = name
-        self._address: Address
+        self._address: Address = address,
         self._type: OccasionType = type
         # TODO: Add date of event
         if parties is None:
@@ -68,5 +69,15 @@ class Occasion:
             'name': self.name,
             'address': self.address.jsonEncode(),
             'type': self.type.name,
-            'paries': [paries.jsonEncode() for paries in self.paries],
+            'parties': [parties.jsonEncode() for parties in self.parties],
         }
+
+    @staticmethod
+    def jsonDecode(occasion: dict[str, any]):
+        return Occasion(
+            name=occasion.get('name'),
+            address=Address.jsonDecode(occasion.get('address')),
+            type=occasion.get('type'),
+            parties=[Party.jsonDecode(party)
+                     for party in occasion.get('parties')],
+        )
