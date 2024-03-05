@@ -25,6 +25,14 @@ class Occasion:
         self._parties: List[Party] = parties
 
     @property
+    def address(self) -> str:
+        return self._address
+
+    @address.setter
+    def address(self, address: Address) -> None:
+        self._address = address
+
+    @property
     def name(self) -> str:
         return self._name
 
