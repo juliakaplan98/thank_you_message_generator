@@ -25,7 +25,15 @@ class Occasion:
         self._parties: List[Party] = parties
 
     @property
-    def address(self) -> str:
+    def type(self) -> OccasionType:
+        return self._type
+
+    @type.setter
+    def type(self, type: Address) -> None:
+        self._type = type
+
+    @property
+    def address(self) -> Address:
         return self._address
 
     @address.setter
@@ -41,9 +49,9 @@ class Occasion:
         self._name = name
 
     @property
-    def parties(self) -> tuple[Party]:
+    def parties(self) -> List[Party]:
         """ Return tuple to prevent adding party without checking """
-        return tuple(self._parties)
+        return self._parties
 
     @parties.setter
     def parties(self, parties: List[Party]) -> None:
@@ -75,7 +83,7 @@ class Occasion:
     def jsonEncode(self) -> dict[str, Any]:
         return {
             'name': self.name,
-            'address': self.address.jsonEncode(),
+            # 'address': self.address.jsonEncode(),
             'type': self.type.name,
             'parties': [parties.jsonEncode() for parties in self.parties],
         }
@@ -84,7 +92,7 @@ class Occasion:
     def jsonDecode(occasion: dict[str, any]):
         return Occasion(
             name=occasion.get('name'),
-            address=Address.jsonDecode(occasion.get('address')),
+            #  address=Address.jsonDecode(occasion.get('address')),
             type=occasion.get('type'),
             parties=[Party.jsonDecode(party)
                      for party in occasion.get('parties')],
