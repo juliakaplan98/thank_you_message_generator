@@ -17,7 +17,7 @@ class Occasion:
             address: Address = Address(),
             parties: List[Party] = None) -> None:
         self._name: str = name
-        self._address: Address = address,
+        self._address: Address = address
         self._type: OccasionType = type
         # TODO: Add date of event
         if parties is None:
