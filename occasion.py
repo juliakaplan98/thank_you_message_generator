@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 from enum import Enum
 from party.party import Party
 from party.address import Address
@@ -62,3 +62,11 @@ class Occasion:
         self._parties = [
             party for party in self._parties if party.name != name]
         return count != len(self._parties)
+
+    def jsonEncode(self) -> dict[str, Any]:
+        return {
+            'name': self.name,
+            'address': self.address.jsonEncode(),
+            'type': self.type.name,
+            'paries': [paries.jsonEncode() for paries in self.paries],
+        }
