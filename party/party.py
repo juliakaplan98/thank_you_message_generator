@@ -1,4 +1,3 @@
-import json
 from typing import Any, List
 from .phone import Phone
 from .gift import Gift
@@ -36,8 +35,8 @@ class Party:
         self._name = name
 
     @property
-    def members(self) -> list[PartyMember]:
-        return self._members
+    def members(self) -> tuple[PartyMember]:
+        return tuple(self._members)
 
     @members.setter
     def members(self, members: list[PartyMember]) -> None:
@@ -94,6 +93,14 @@ class Party:
         return members
 
     # Methods
+    def addPartyMember(self, member: PartyMember) -> bool:
+        pass
+
+    def removePartyMember(self):
+        pass
+
+    # decoder encoder
+
     def jsonEncode(self) -> dict[str, Any]:
         return {
             'name': self.name,
