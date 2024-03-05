@@ -35,8 +35,8 @@ class Party:
         self._name = name
 
     @property
-    def members(self) -> tuple[PartyMember]:
-        return tuple(self._members)
+    def members(self) -> list[PartyMember]:
+        return self._members
 
     @members.setter
     def members(self, members: list[PartyMember]) -> None:
