@@ -49,6 +49,8 @@ if __name__ == '__main__':
 
     wd = os.getcwd()
     path = os.path.join(wd, 'data', f'{occasion.name}.json')
+    if not os.path.exists(os.path.join(wd, 'data')):
+        os.makedirs(os.path.join(wd, 'data'))
     with open(path, 'w') as file:
         json.dump(occasion.jsonEncode(), file)
 

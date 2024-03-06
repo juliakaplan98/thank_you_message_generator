@@ -1,3 +1,5 @@
+import os
+import json
 from typing import List, Any
 from enum import Enum
 from party.party import Party
@@ -97,3 +99,16 @@ class Occasion:
             parties=[Party.jsonDecode(party)
                      for party in occasion.get('parties')],
         )
+
+    @staticmethod
+    def saveOccasionOnFile(occasion: dict[str, Any]) -> bool:
+        fileName = occasion.get(occasion.name)
+        if not fileName:
+            return False
+        workingDirectory = os.getcwd()
+        dataPath = os.path.join(workingDirectory, 'data')
+        if not os.path.exists(dataPath):
+            os.makedirs(os.path.join(dataPath))
+        path = os.path.join(dataPath, f'{occasion.name}.json')
+        with open(path, 'w') as file:
+            json.dump(occasion.jsonEncode(), file)
