@@ -1,4 +1,3 @@
-import json
 import os
 from party.party import Party
 from party.phone import Phone, PhoneType
@@ -7,6 +6,7 @@ from party.address import Address, AddressType
 from party.gift import Gift, GiftType
 from party.party_members import PartyMember, AttendanceStatus
 from occasion import Occasion, OccasionType
+import menu
 
 if __name__ == '__main__':
     p0 = Party('Kaplan')
@@ -47,8 +47,12 @@ if __name__ == '__main__':
     occasion.addParty(p0)
     occasion.addParty(p1)
 
-    Occasion.dumpOccasionOnFile(occasion=occasion)
+    # Occasion.dumpOccasionOnFile(occasion=occasion)
 
-    occ = Occasion.loadOccasionFromFile(occasion.name)
+    # occ = Occasion.loadOccasionFromFile(occasion.name)
 
-    print(occ)
+    print(menu.menu_main)
+
+    os.system('cls')
+
+    print(menu.menu_add_new_event)
