@@ -1,4 +1,4 @@
-menu_main = """
+menu_main_screen = """
         ________________________________________________________________
 
         Main Menu
@@ -10,7 +10,7 @@ menu_main = """
         3. Exit
 """
 
-menu_add_new_event = """
+menu_add_new_event_screen = """
         ________________________________________________________________
 
         Add New Event
@@ -25,7 +25,7 @@ menu_add_new_event = """
 
 """
 
-menu_edit_event = """
+menu_edit_event_screen = """
         ________________________________________________________________
 
         Edit Event
@@ -37,6 +37,5 @@ menu_edit_event = """
         4. Change Address
         5. Change Paries
         6. Exit
-
 
 """
