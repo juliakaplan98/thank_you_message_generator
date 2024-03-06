@@ -101,8 +101,8 @@ class Occasion:
         )
 
     @staticmethod
-    def saveOccasionOnFile(occasion: dict[str, Any]) -> bool:
-        fileName = occasion.get(occasion.name)
+    def dumpOccasionOnFile(occasion: Any) -> bool:
+        fileName = occasion.name
         if not fileName:
             return False
         workingDirectory = os.getcwd()
@@ -112,3 +112,17 @@ class Occasion:
         path = os.path.join(dataPath, f'{occasion.name}.json')
         with open(path, 'w') as file:
             json.dump(occasion.jsonEncode(), file)
+
+    @staticmethod
+    def loadOccasionFromFile(name: str):
+        workingDirectory = os.getcwd()
+        dataPath = os.path.join(workingDirectory, 'data')
+        if not os.path.exists(dataPath):
+            return None
+        path = os.path.join(dataPath, f'{name}.json')
+        if not os.path.isfile(path):
+            return None
+        with open(path, 'r') as file:
+            occFile = json.load(file)
+            occasion = Occasion.jsonDecode(occFile)
+            return occasion

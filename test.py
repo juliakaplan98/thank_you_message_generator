@@ -47,14 +47,8 @@ if __name__ == '__main__':
     occasion.addParty(p0)
     occasion.addParty(p1)
 
-    wd = os.getcwd()
-    path = os.path.join(wd, 'data', f'{occasion.name}.json')
-    if not os.path.exists(os.path.join(wd, 'data')):
-        os.makedirs(os.path.join(wd, 'data'))
-    with open(path, 'w') as file:
-        json.dump(occasion.jsonEncode(), file)
+    Occasion.dumpOccasionOnFile(occasion=occasion)
 
-    with open(path, 'r') as file:
-        pp = json.load(file)
-        ppp = Occasion.jsonDecode(pp)
-        print(ppp)
+    occ = Occasion.loadOccasionFromFile(occasion.name)
+
+    print(occ)
