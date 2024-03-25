@@ -4,10 +4,11 @@ menu_main_screen = """
         Main Menu
         ________________________________________________________________
 
-        1. Add New Event
-        2. Edit Event
-        3. Generate Thank You Message For Event Guests
-        3. Exit
+        1. List All Events
+        2. Add New Event
+        3. Edit Event
+        4. Generate Thank You Message For Event Guests
+        5. Exit
 """
 
 menu_add_new_event_screen = """
@@ -39,3 +40,7 @@ menu_edit_event_screen = """
         6. Exit
 
 """
+
+
+if __name__ == '__main__':
+    print(menu_main_screen)
