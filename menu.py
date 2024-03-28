@@ -131,7 +131,8 @@ def add_new_event():
                 return
             case _:
                 print(
-                    "\n\nThe selected option is invalid. Please input a valid choice from the menu above.")
+                    "\n\nThe selected option is invalid. Please input "
+                    "a valid choice from the menu above.")
                 return
 
 
@@ -153,7 +154,8 @@ def edit_existing_event():
                 return
             case _:
                 print(
-                    "\n\nThe selected option is invalid. Please input a valid choice from the menu above.")
+                    "\n\nThe selected option is invalid."
+                    " Please input a valid choice from the menu above.")
                 return
 
 
@@ -169,7 +171,8 @@ def generate_thank_you_message():
                 return
             case _:
                 print(
-                    "\n\nThe selected option is invalid. Please input a valid choice from the menu above.")
+                    "\n\nThe selected option is invalid. Please input a "
+                    "valid choice from the menu above.")
                 return
 
 
@@ -190,7 +193,8 @@ def main_menu():
                 return
             case _:
                 print(
-                    "\n\nThe selected option is invalid. Please input a valid choice from the menu above.")
+                    "\n\nThe selected option is invalid. Please input "
+                    "a valid choice from the menu above.")
                 main_menu()
 
 
