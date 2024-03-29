@@ -1,2 +1,5 @@
-pandas >= 2.2.0
-openai >= 4.0.0
+pandas >= 2.2.1
+openai >= 1.14.3
+PyQt6 >= 6.6.1
+PyQt6-WebEngine-Qt6 >=6.6.2
+PyQt6-WebEngine >=6.6.0
